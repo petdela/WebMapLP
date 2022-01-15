@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div class="contenedor bg-secondary bg-gradient">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-6">
+      <div class="card text-center">
+        <div class="card-header">
+          <h1>Añadir un Evento</h1>
+        </div>
+        <div class="card-body">
+          <form action="http://localhost/back/insertar.php" method="post">
+            <div class="form-group text-left">
+              <label for="nombre">Nombre</label>
+              <input id ="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre del Evento">
+            </div>
+            <div class="form-group text-left">
+                <label for="ubicacion">Ubicacion</label>
+              <input id ="ubicacion" name="ubicacion" class="form-control" type="text" placeholder="Coordenadas">
+            </div>
+            <div class="form-group text-left">
+                <label for="descripcion">Descripcion</label>
+              <input id ="descripcion" name="descripcion" class="form-control" type="text" placeholder="Descripcion del Evento">
+            </div>
+            <div class="form-group text-left">
+                <label for="fecha">Fecha</label>
+              <input id ="fecha" name="fecha" class="form-control"type="text" placeholder="AA-MM-DD HH:MM:SS">
+            </div>
+            <div class="form-group text-left">
+                <label for="categoriaId" class="lab col-md-12">Categoria</label>
+              <!--input id ="categoriaId" name="categoriaId" class="form-control" type="text" placeholder="Categoria del Evento"-->
+              <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="categoriaId">
+                <option selected>Open this select menu</option>
+                <option value="1">Entretenimiento</option>
+                <option value="2">Arte</option>
+                <option value="3">Musica</option>
+                <option value="4">Tecnología</option>
+              </select>
+            </div>
+            <div class="form-group text-left">
+                <!--label for="usuarioId">Usuario</label-->
+              <input id ="usuarioId" name="usuarioId" type="hidden" class="form-control" placeholder="Id del usuario" value="1">
+            </div>
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-success" id="enviar">Guardar</button>
+            </div>
+        </form>
+        </div>
+        <div class="card-footer">
+          <div class="description">
+            <p>Ingrese los datos de un evento a registrar en la base de datos</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

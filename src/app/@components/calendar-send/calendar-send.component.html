@@ -1,0 +1,26 @@
+<div class="contenedor bg-secondary bg-gradient">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-6">
+      <div class="card text-center">
+        <div class="card-header">
+          <h1>Envio de Evento de Calendario</h1>
+        </div>
+        <div class="card-body">
+          <form action="http://localhost/back/envio3.php" method="post">
+            <div class="input">
+              <label for="correo"></label>
+              <input id ="correo" name="correo" class="form-control" type="email" placeholder="NAME@EXAMPLE.COM">
+              <button type="submit" class="form-control btn btn-success" id="submit">Enviar</button>
+              <input id="id" name="id" type="hidden">
+            </div>
+        </form>
+        </div>
+        <div class="card-footer">
+          <div class="description">
+            <p>Al ingresar su correo se le enviara un evento de calendario con los datos asociados al evento anteriormente seleccionado a su correo</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
