@@ -34,44 +34,46 @@ export class MapComponent implements OnInit {
   }).addTo(mymap);    
   
 
-  fetch(`http://localhost/back/getSebas.php`)
+  fetch(`https://hh8psx4q44.execute-api.us-east-1.amazonaws.com/getEvents`)
   .then(res => res.json())
   .then(res => {
-    for (let i = 0; i < res.length; i++) {
-      console.log(res);
-      let startIndx = res[i].ubicacion.search("@");
-      let commaIndx = startIndx + res[i].ubicacion.slice(startIndx, -1).search(",", startIndx+1);
-      let latlong = res[i].ubicacion.slice(startIndx+1, commaIndx+res[i].ubicacion.slice(commaIndx+2,-1).search(",",commaIndx+2))
-      let latlongList = latlong.split(",").map(parseFloat)
-      var marker = L.marker(latlongList, {icon: myIcon}).addTo(mymap);
-      var cat= "";
-      switch(res[i].categoriaId) {
-        case "1":
-          cat="Entretenimiento";
-          break;
-        case "2":
-          cat="Arte";
-          break;
-        case "3":
-          cat="Musica";
+    for (let i = 0; i < res.records.length; i++) {
+      console.log("cada record");
+
+      let startIndx = res.records[i][2].stringValue.search("@");
+      if(startIndx!=-1){
+        let commaIndx = startIndx + res.records[i][2].stringValue.slice(startIndx, -1).search(",", startIndx+1);
+        let latlong = res.records[i][2].stringValue.slice(startIndx+1, commaIndx+res.records[i][2].stringValue.slice(commaIndx+2,-1).search(",",commaIndx+2))
+        let latlongList = latlong.split(",").map(parseFloat)
+        var marker = L.marker(latlongList, {icon: myIcon}).addTo(mymap);
+        var cat= "";
+        switch(res.records[i][5].longValue) {
+          case "1":
+            cat="Entretenimiento";
             break;
-        case "4":
-          cat="Tecnologia";
-          break;
-      } 
-      //res[i].categoriaId
-      // - 5/09/2021
-     marker.bindPopup(`
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h3 class="card-title"><b>${res[i].nombre}</b></h3>
-          <h6 class="card-subtitle"><b>${cat}</b> - ${res[i].fecha}</h6>
-          <p class="card-text">${res[i].descripcion} </p>
-          <a href=http://localhost:4200/calendar/${res[i].id} class="btn btn-success"  style="width:100%; color:white;">Agregar a mi calendario</a>
-          <a href="http://localhost:4200/eventos/update/${res[i].id}" class="btn btn-secondary" style="width:100%; color:white;">Editar Evento</a>
+          case "2":
+            cat="Arte";
+            break;
+          case "3":
+            cat="Musica";
+              break;
+          case "4":
+            cat="Tecnologia";
+            break;
+        } 
+        //res[i].categoriaId
+        // - 5/09/2021          <a href=http://localhost:4200/calendar/${res.records[i][0].longValue} class="btn btn-success"  style="width:100%; color:white;">Agregar a mi calendario</a>
+       marker.bindPopup(`
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h3 class="card-title"><b>${res.records[i][1].stringValue}</b></h3>
+            <h6 class="card-subtitle"><b>${cat}</b> - ${res.records[i][4].stringValue}</h6>
+            <p class="card-text">${res.records[i][3].stringValue} </p>
+            <a href="http://proyecto-sd-map.s3-website-us-east-1.amazonaws.com/eventos/update/${res.records[i][0].longValue}" class="btn btn-secondary" style="width:100%; color:white;">Editar Evento</a>
+          </div>
         </div>
-      </div>
-    `).openPopup();
+      `).openPopup();
+      }
    }
     
   });

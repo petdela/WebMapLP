@@ -7,7 +7,7 @@
           <h1>Modificar un Evento</h1>
         </div>
         <div class="card-body">
-          <form action="http://localhost/back/actualizar.php" method="POST">
+          <form id="updateForm">
             <div class="form-group text-left">
             <input id ="id" name="id" class="form-control" type="hidden">
           </div>
@@ -41,10 +41,10 @@
                 <!--label for="usuarioId">Usuario</label-->
               <input id ="usuarioId" name="usuarioId" type="hidden" class="form-control" placeholder="Id del usuario" value="1">
             </div>
-            <div class="form-group text-right">
-                <button type="submit" class="btn btn-success" id="enviar">Modificar</button>
-            </div>
         </form>
+        <div class="form-group text-right">
+          <button (click)="actualizar()" class="btn btn-success" id="enviar">Modificar</button>
+      </div>
         </div>
         <div class="card-footer">
           <div class="description">

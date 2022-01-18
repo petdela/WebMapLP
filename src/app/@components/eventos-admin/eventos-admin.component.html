@@ -7,7 +7,7 @@
           <h1>Añadir un Evento</h1>
         </div>
         <div class="card-body">
-          <form action="http://localhost/back/insertar.php" method="post">
+          <form  id="eventForm">
             <div class="form-group text-left">
               <label for="nombre">Nombre</label>
               <input id ="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre del Evento">
@@ -27,7 +27,7 @@
             <div class="form-group text-left">
                 <label for="categoriaId" class="lab col-md-12">Categoria</label>
               <!--input id ="categoriaId" name="categoriaId" class="form-control" type="text" placeholder="Categoria del Evento"-->
-              <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="categoriaId">
+              <select id="categoriaId" class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="categoriaId">
                 <option selected>Open this select menu</option>
                 <option value="1">Entretenimiento</option>
                 <option value="2">Arte</option>
@@ -39,10 +39,10 @@
                 <!--label for="usuarioId">Usuario</label-->
               <input id ="usuarioId" name="usuarioId" type="hidden" class="form-control" placeholder="Id del usuario" value="1">
             </div>
-            <div class="form-group text-right">
-                <button type="submit" class="btn btn-success" id="enviar">Guardar</button>
-            </div>
         </form>
+        <div class="form-group text-right">
+          <button  (click)="enviarForm()" class="btn btn-success" id="enviar">Guardar</button>
+      </div>
         </div>
         <div class="card-footer">
           <div class="description">
